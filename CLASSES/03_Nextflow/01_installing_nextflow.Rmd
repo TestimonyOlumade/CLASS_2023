@@ -97,6 +97,7 @@ echo $PATH | tr ":" "\n"
 
 # We want to make sure there is a line "that says "/usr/bin"
 # This means anything in your bin directory can be called up on demand
+ If you do not have the "/usr/bin" file, you can use nano to create the file with commands
 
 ```
 
