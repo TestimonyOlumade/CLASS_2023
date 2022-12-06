@@ -141,7 +141,7 @@ export PATH=$PATH:~/bin
 
 source ~/.bash_profile
 
-source ~/.profile
+source ~/.profile (The better option for simplicity)
 
 # Since /bin is in our path then after we source it will automatically
 # load in each session (just like ls, cd etc..)
