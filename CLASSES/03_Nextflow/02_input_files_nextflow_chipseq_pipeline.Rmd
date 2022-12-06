@@ -310,11 +310,16 @@ all you need to do is :
 ## !! MAKE SURE YOU ARE IN THE RIGHT DIRECTORY !! 
 ```{SLURM running shell script}
 sbatch run.sh
+
+##  if running on your local computer, you could use 
+./run.sh
+
 # Then to track progress :
 squeue -u <identikey> 
 # should see 10 jobs runnung
 tail -f nextflow.out
 # if you want to cancel a job:
 scancel -u <identikey>
+# you will need to replace <identikey> with the <job_name> when doing your own run
 ```
 
