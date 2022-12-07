@@ -41,7 +41,7 @@ https://youtu.be/dTlz2sJgv1A
 # 1 Make R project in Rstudio
 #################################
 
-Let's start by making an Rpoject -- that will also connect to git.
+Let's start by making an Rproject -- that will also connect to git.
 In the top right hand corner there is a dropdown with "R shield"
 
 (a) select open new project
