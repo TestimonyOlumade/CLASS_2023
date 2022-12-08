@@ -165,6 +165,7 @@ table(Pol2_peak1$qValue)
 table(table(Pol2_peak1$qValue))
 
 # so we can see 1 qvalue shows up 229 times but most have a unique qValue
+# This command will come in handy when you want to see how many overlaps there are in your data, or unique enteries, etc.
 
 # let's see if fold change is as variable 
 table(table(Pol2_peak1$signalValue))
@@ -188,7 +189,10 @@ Pol2_peak1 <- Pol2_peak1 %>%
 # That is very handy and a function we will use a lot !!
 
 ```
+In one line, the code is:
+Pol2_peak1 <- Pol2_peak1 %>% mutate(peak_width = end - start)
 
+# That function will create a new column with the peak width at the end of the table.
 
 Let's get some info make some basic plots to get to know our data better:
 
