@@ -112,19 +112,85 @@ Exercise : install packages needed for class
 # probably worth reading what they do while installing...
 
 Iranges
-ggplot2
-broom
-Gviz
-ggdendro
-ggrepel
-pheatmap
-httr
-janitor
-purrr
-deseq2
+  ## Bioconductor 
+  IRanges is a library for representing ranges of integers, which is useful in genomics, 
+  because we have base pair ranges that we'd like to manipulate.There's a very detailed vignette on IRanges. 
+  IRanges have a start, an end and a width.
 
-# let's try this one -- maybe tricky:
+
+ggplot2
+  ## CRAN (Grmmar for graphics)
+  ggplot2 is a plotting package that provides helpful commands to create complex plots from data in a data frame. 
+  It provides a more programmatic interface for specifying what variables to plot, how they are displayed, 
+  and general visual properties.
+  
+broom
+  ## CRAN
+  a package for tidying statistical models into data frames.
+  the output of R statistical modeling functions isn’t tidy, meaning it’s difficult to manipulate and 
+  recombine in downstream analyses and visualizations,
+  Broom bridges the gap from untidy outputs of predictions and estimations to the tidy data we want to work with.
+  
+Gviz
+  ## Bioconductor
+  The Gviz package aims to provide a structured visualization framework to plot any type of data along genomic coordinates.
+  It also allows to integrate publicly available genomic annotation data from sources like UCSC or ENSEMBL.
+  
+ggdendro
+  ## CRAN
+  ggdendrogram() is a wrapper around ggplot() to create a dendrogram using a single line of code.
+  ggdendro can be used to extract the plot data from dendrogram and for drawing a dendrogram using ggplot2
+  The height of the branch points indicates how similar or different they are from each other: the greater the height, 
+  the greater the difference.
+  We can use a dendrogram to represent the relationships between any kinds of entities as long
+  as we can measure their similarity to each other.
+  
+ggrepel
+  ## CRAN
+  ggrepel provides geoms for ggplot2 to repel overlapping text labels: geom_text_repel() geom_label_repel()
+  ggrepel implements functions to repel overlapping text labels away from each other 
+  and away from the data points that they label
+  
+pheatmap
+  ## CRAN (Pretty heatmaps)
+  A function to draw clustered heatmaps where one has better control over some graphical parameters such as cell size, etc.
+  
+httr
+  ## CRAN (Tools for Working with URLs and HTTP)
+  The aim of httr is to provide a wrapper for the curl package, customised to the demands of modern web APIs.
+  functions for the most important http verbs: GET(), HEAD(), PATCH(), PUT(), DELETE() and POST().
+  Automatic connection sharing across requests to the same website (by default, curl handles are managed automatically),
+  cookies are maintained across requests, and a up-to-date root-level SSL certificate store is used.
+  Requests return a standard reponse object that captures the http status line, headers and body, 
+  along with other useful information.
+  
+janitor
+  ## CRAN
+  janitor has simple functions for examining and cleaning dirty data. Janitor
+  - perfectly format data.frame column names;
+  - create and format frequency tables of one, two, or three variables - think an improved table();
+  - provide other tools for cleaning and examining data.frames.
+  
+purrr
+  ## CRAN
+  purrr enhances R's functional programming (FP) toolkit by providing a complete and consistent set of tools 
+  for working with functions and vectors.
+  
+deseq2 
+  ## Bioconductor - Differential gene expression analysis
+  The DESeq2 package is designed for normalization, visualization, and differential analysis of high- dimensional count data
+  It makes use of empirical Bayes techniques to estimate priors for log fold change and dispersion, 
+  and to calculate posterior estimates for these quantities.
+  
+  ## DESeq and EdgeR are very similar and both assume that no genes are differentially expressed.
+  DESeq uses a "geometric" normalisation strategy, whereas
+  EdgeR is a weighted mean of log ratios-based method.
+  Both normalise data initially via the calculation of size / normalisation factors.
+  
+  
 ggpubr
+  ## CRAN  - ggpubr: 'ggplot2' Based Publication Ready Plots
+  ggpubr' provides some easy-to-use functions for creating and customizing 'ggplot2'- based publication ready plots
 
 
 
