@@ -49,6 +49,11 @@ fun(2,-4)
 When creating a function, you can also add documentation about what that function 
 does and the data types and expectation for the the parameters it takes.
 
+## Note that when documenting functions, you always need to add the "#'" sign so that R understands
+ ## that you want to document some note to the function
+## Description - introduces the description of the function
+## param - (parameter) and explains what the parameters are.
+
 ```{r documenting functions}
 #' A function to multiply two numbers
 #'
@@ -139,6 +144,8 @@ fl[7]
 # https://regexr.com/
 
 y <-  str_extract(fl[7], "([^\\/]+$)")
+
+# The function above will only return the object after the '/' in the string that it is given as input
 
 # let's see the difference:
 fl[7]
