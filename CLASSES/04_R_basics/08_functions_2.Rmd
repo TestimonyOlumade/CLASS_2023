@@ -36,12 +36,15 @@ Let's first run import_peaks
 # import peaks to get peak_list
 peak_list <- import_peaks(consensus_file_path = broadpeakfilepath)
 # This will be the input into our intersect_peaks function
+# This will take a minute because it will pull out every peak file from the file path, importing them as a Genomic ranges, 
+# and attach the names to the files, so that they can be tracked
 
 # quick check of peak numbers per file
 num_peaks <- sapply(peak_list, length) 
 num_peaks
 
-
+# This is important to be done - to take a look at the length of each peak file so as to see the level of variations across
+# replicates. If variations are too low on any of them, they may be excluded so that they do not bias analysis.
 # NOTE: I am removing replicate 1 and 3 from K27me3 -- far fewer peaks than the other files 
 # NOTE removing REST replicate 3 as well
 ```
@@ -59,8 +62,11 @@ Hang in there it's worth it.
 # peak_list <- import_peaks(consensus_file_path = broadpeakfilepath)
 
 # getting dbp name as object -- problem is rep number won't work
-# we need a unique DBP name with out the replicate as input to for loop
+# we need a unique DBP (DNA Binding Protein) name with out the replicate as input to for loop
 names(peak_list)
+
+# This is important - to remove the replicate number at the name of the peak name so that we can have just the DBP name 
+# and then we can find all the peak overlaps - to return with the peaks that are common to all replicates, under one name.
 
 # let's use unlist(strsplit) on names to get a unique name for each DBP
 dbps <- unique(sapply(names(peak_list), function(x) {
@@ -105,6 +111,7 @@ dbps
   # Required only two replicates
   # dbp_consensus <- all_peaks[rowSums(peak_exists) > 1]
   return(dbp_consensus)
+  # If you need the peaks to be in more than 2 replicates, then you replace '1' with '2'
 }
 ```
 
