@@ -53,11 +53,15 @@ consensus_peaks_files <- list.files(consensusPeakPath,
 # lapply with import function to make a list of GRanges
 consensus_peaks <- lapply(consensus_peaks_files, rtracklayer::import)
 
+# output is the file path to all the unique peak files in the consensus_peak_files.
+
 # adding DBP name to each list of GRanges from the file name
 # note gsub requires no space around or argument ( | )
 names(consensus_peaks) <- gsub("/scratch/Shares/rinnclass/CLASS_2023/JR/CLASS_2023/CLASSES/05_R_analyses/00_consensus_peaks/consensus_peaks/|_consensus.bed","", consensus_peaks_files)
 
 ```
+ # this will help you grab just the gene name from the filepath by deleting the entire path before the dbp name
+ # and then everything after the dbp name.
 
 # Loading in Gencode annotation of genomic features
 We will make a file of lncRNA and mRNA promoters from 
@@ -79,6 +83,7 @@ rtracklayer::export(gencode_genes, "results/gene_annotations/gencode_genes.gtf")
 
 # mRNA genes (called "protein_coding") in this version of gencode changes sometimes !
 mrna_genes <- gencode_genes[gencode_genes$gene_type %in% "protein_coding"] 
+# here, we are basically asking, what subsets of the gencode_genes, under the gene_type match to "protein coding"
 
 rtracklayer::export(mrna_genes, "results/gene_annotations/mrna_genes.gtf")
 table(gencode_genes$gene_type)
@@ -174,6 +179,9 @@ promoter_peak_counts <- count_peaks_per_feature(lncrna_mrna_promoters, consensus
 # so now we just row sum for each DBP !
 
 num_peaks_df$peaks_overlapping_promoters <- rowSums(promoter_peak_counts)
+
+# this simply creates a new column called 'peaks_overlapping_promoters' in the 'num_peaks_df' file and inputs the
+# row sums in that column as output.
 
 # Now let's break these promoters into two groups "lncrna" and "mrna"
 # We will use the gene_id objects we made above to index and separate them.
