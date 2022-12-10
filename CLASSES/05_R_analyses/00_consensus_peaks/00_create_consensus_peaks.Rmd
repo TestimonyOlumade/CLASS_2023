@@ -62,16 +62,27 @@ write_csv(peak_num, "results/num_peaks_df.csv")
 ```{r create consensus peaks}
 # first we need a list of unique dbps as input parameter
 dbp <- c("EP300", ...)
-# works but real pain for 480 dbps later :)
-
+# works on smaller sample set where you can just manually input the names of the dbps; 
+# but real pain for 480 dbps later :)
 # or use our handy previous code 
+
 dbps <- unique(sapply(names(peak_list), function(x) {
    unlist(strsplit(x, "_"))[1]
 }))
 
+# This function will tha names of the peak_list file, assign them to 'x'; string_split the x file, separated by '_';
+# take out the the first string; and unlist it. Sapply will run that function over all the names in the peak_list file
+# 'Unique' - will give you one name for all the dbps that are repeated, since the replicate numbers are gotten rid of.
+# In the end, you have a list of all dbps in the peak_list file.
+
 # now run our function consensus_from_reduced
 consensus_list <- lapply(dbps, consensus_from_reduced, peak_list)
+
+# IN the end, you have peaks that are consistent and appear in all replicates for each dbp. but without a name
+
 names(consensus_list) <- dbps
+
+# This function then renames each consensus peak file with the names of unique dbps created in line 69
 
 ```
 
@@ -81,8 +92,12 @@ names(consensus_list) <- dbps
 num_consensus_peaks <- sapply(consensus_list, length) %>% 
   as.data.frame() %>%
   rownames_to_column( var = "dbp") %>%
+  
+  # This function renames the first column
+  
   dplyr::rename(number_consensus_peaks = ".")
-
+  
+  # This function renames the column that is labeled as '.' and replaces it with 'number_consensus_peaks'
 
 # merge into num_peaks
 peak_num <- left_join(peak_num, num_consensus_peaks)
@@ -107,6 +122,14 @@ exportpath <- file.path(basepath, consensus_path)
 # now we can export each as .bed file
 for(i in 1:length(consensus_list)) {
 rtracklayer::export(consensus_list[[i]], paste0(exportpath, names(consensus_list)[i], "_consensus_peaks.bed") )}
+
+# Since there are multiple files in the 'consensus_list', and we want to export each consensus peak file for each dbp
+# as a bed file, we need a for loop to pick each of the peak files in the consensus_list and export each of them to the 
+# specified exportpath
+
+# So, for every i in that consensus list, i.e for each of them, export (using rtracklayer) each of them (every i)
+# and export them, pasting the unique name of the dbp for each i, and paste each of them, appending the text,
+# "_consensus_peaks.bed" to the end of the pasted file.
 
 # alternative local export:
 for(i in 1:length(consensus_list)) {
@@ -133,9 +156,13 @@ Rtracklayer export does not keep the col names :(
 # FIRST a file list:
 consensus_file_list <- list.files("/scratch/Shares/rinnclass/CLASS_2023/JR/CLASS_2023/CLASSES/05_R_analyses/00_consensus_peaks", full.names = T, pattern = ".bed")
 
+# What that gives you is the full file path to each peak file in the consensus peaks folder with a .bed format.
+
 # lapply (for loop) across consensus file list to add colnames
 # The actual col names for .broadPeak are: chr, start, end, name, score, strand
 peaks <- lapply(consensus_file_list, read.table, col.names = c("chr", "start", "end", "name", "score", "strand"))
+
+# it will pick each file in the consensus_file_list, read the table, then replace the column names with what they should be
 
 names(peaks) <- dbps
 # double check order by looking at consensus_file_list is same order as dbps
@@ -147,9 +174,13 @@ names(peaks) <- dbps
 # make chromosomes of interest object
 canonical_chr <- c(paste0("chr", 1:22), "chrM", "chrX", "chrY")
 
+# this will get rid of non-canonical chromosomes - those with no known function, so we are left with 1-22,x,y and m
+
 # let's use lapply with filter funciton to cannonical_chr
 peaks <- lapply(peaks, function(x) x %>% filter(chr %in% canonical_chr))
 
+# this is a tidyverse function that will take the objects in the peaks file and assign them to x, then only filter out
+# the objects that match 'chr' in the 'canonical_chr file.
 
 # now that these are all nice and clean let's export:
 new_filenames <- paste0("consensus_peaks/", names(peaks), "_consensus.bed")
@@ -161,6 +192,7 @@ for(i in 1:length(peaks)) {
 }
 
 ```
+# this will crate a "dbpname_consensus.bed" file for all peak files with chromosomes numbers (only canonical ones)
 
 # Demo trying to load one of these peak files into UCSC.
 
