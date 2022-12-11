@@ -124,7 +124,7 @@ ggplot(big_num_peaks_df, aes(x = log2(num_peaks/1e3),
                  color = dbd == "C2H2 ZF")) +
   geom_point()
 
-# Wow that sure looks differnt :) of note the inflection point
+# Wow that sure looks different :) of note the inflection point
 # indicates at a certain point the trend is not as linear as we saw before.
 
 ```
@@ -325,7 +325,7 @@ ggplot(big_num_peaks_df, aes(x = log10(num_peaks), y =log10(total_peak_length), 
   scale_x_continuous(breaks = c(1, 2, 3, 4)) +
   scale_color_brewer(palette = 3) 
 
-# scale_x_continious (same for y) is calling the scale layer specifically
+# scale_x_continous (same for y) is calling the scale layer specifically
 # We are giving it where to put values on X-axis      
 
 
@@ -432,6 +432,7 @@ ggplot(big_num_peaks_df, aes(x = num_peaks, y = total_peak_length )) +
   facet_wrap(tf ~ ., scales = "free", ncol = 1) + 
   geom_point()
 
+# scales here, just allows the chart to create its custom axes limits based on the data
 ```
 
 # Coordinate layer
@@ -451,7 +452,7 @@ ggplot(big_num_peaks_df, aes(x = dbd)) +
   geom_bar() +
   coord_polar()
 
-# the values eminate from the center and are a "bar_plot" from the center.
+# the values emanate from the center and are a "bar_plot" from the center.
 # we can easily see as we did above C2H2 ZF most represented in our data.
 
 # We can play around in the coordinate space too. 
@@ -475,12 +476,13 @@ Here is an example of a 'theme' is called in ggPlot
 ```{r themes}
 
 ggplot(big_num_peaks_df, aes(x = num_peaks)) +
-  geom_density(alpha = 0.2, color = "#424242", fill = "#424242") +
+  geom_density(alpha = 0.5, color = "#424242", fill = "#424242") +
   theme_paperwhite() +
   xlab(expression("Number of peaks")) +
   ylab(expression("Density")) +
   ggtitle("Promoter binding events",
           subtitle = "mRNA and lncRNA genes")
+?ggtitle
 
 # Note this example build everything from labels to data presentation!
 
