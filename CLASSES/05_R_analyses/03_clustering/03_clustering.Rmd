@@ -70,6 +70,8 @@ colnames(promoter_peak_occurence_matrix)
 test <- dist(promoter_peak_occurence_matrix[1:2,], method = "euclidean")
 test
 
+# for instance, you can pick the first two dbps (1:2) and then calculate the distance between them using the accurate
+# statistic. Binary (if between 0 and 1) or euclidean (betwee 1 to 10,000) and everything in-between.
 # There are a number of measures to calculate distance between two vectors and we can check those out in the documentation.
 ?dist
 
@@ -100,7 +102,7 @@ everything is in the same cluster.
 bin_hier <- hclust(peak_occurence_dist, method = "complete")
 # that was incrediblty fast to get the correlation values !
 
-# we now can plot the information in bin_hier
+# we now can plot the information in bin_hier (binary hierarchical clustering)
 plot(bin_hier)
 
 # let's take a look at what we got and see distance distribution
@@ -121,7 +123,7 @@ bin_hier$height[[4]]
 
 # print out figure
 #  !! CHECK WORKING DIRECTORY & structure !!
-# Note we can't use ggsave here :( but this is a great way to save
+# Note we can't use ggsave here :( (because we didn't use ggplot/ggdendro to make the plots) but this is a great way to save
 # pdfs for all plots.
 
 pdf("figures/dbp_hclust_dendro.pdf", height = 12, width = 70)
