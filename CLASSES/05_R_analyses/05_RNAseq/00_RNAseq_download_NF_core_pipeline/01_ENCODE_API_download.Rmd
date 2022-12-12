@@ -74,6 +74,8 @@ request_url <- "https://www.encodeproject.org/report.tsv?type=File&status=releas
 request_url <- "https://www.encodeproject.org/report.tsv?type=File&status=released&file_format=fastq&dataset=%2Fexperiments%2FENCSR061SFU%2F&field=accession&field=read_count&field=md5sum&field=controlled_by&field=paired_end&field=paired_with&field=replicate&field=target"
 
 # Thus now this one URL can download any encode experiment accession -- and provide md5sum :)
+# The md5sum is a hash attached to every experiment file on ENCODE to verify the integrity of the file.
+# A change to the file (through editing, faulty file transfer, disk error, etc) will result in a change in its md5sum 
 
 ```
 
