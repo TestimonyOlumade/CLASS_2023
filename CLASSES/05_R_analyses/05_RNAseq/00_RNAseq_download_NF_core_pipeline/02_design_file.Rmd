@@ -330,9 +330,10 @@ mkdir 00_NF_CORE_RNAseq_Pipeline_run
 
 # set working directory inside 00_NF_CORE_RNAseq_Pipeline_run
 
-write_csv(samplesheet, "samplesheet.csv")
 ```
+write_csv(samplesheet, "samplesheet.csv")
 
+# this will write the samplesheet.csv file into the run folder
 
 # Now we can easily create the final design file for NF_CORE RNAseq pipeline
 The design file needs to be in a specific format (as we saw with nf-core/chipseq)
