@@ -159,6 +159,7 @@ run and get the exact same design file !
 # Let's make the following files in analysis/18_ 
 
 # NEXTFLOW.CONFIG
+# use nano to create the config file and paste the chunk below
 
 ```{bash}
 
@@ -184,6 +185,8 @@ Voila you are doing RNAseq!
 
 
 # archive of my design
+# the run.sh file
+
 ```{bash }
 #!/bin/bash
 #SBATCH -p long
