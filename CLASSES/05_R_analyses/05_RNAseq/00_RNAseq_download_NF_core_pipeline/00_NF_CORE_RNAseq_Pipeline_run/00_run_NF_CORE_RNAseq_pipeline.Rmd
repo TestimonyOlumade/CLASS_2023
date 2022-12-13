@@ -39,6 +39,9 @@ process {
 }
 
 ```
+# 'slurm' is the language through which nextflow talks to your server. 
+# it will be 'local', if you are running on your PC
+
 
 # Run.sh file
 Now the run.sh file that gives nf-core/rnaseq all the instructions for nextflow to task.
